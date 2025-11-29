@@ -1,0 +1,585 @@
+const calendarData = {
+    "1": {
+        "title": "Dag 1: Glædelig første december!",
+        "emoji": "🧠",
+        "body": [
+            {
+                "type": "image",
+                "value": "assets\\logo.png",
+                "alt": "Logo Byskovskolen"
+            },
+            {
+                "type": "custom-box",
+                "value": {
+                    "icon": "thumbs-up",
+                    "title": "Julekalderen",
+                    "content": "🎉✨ Du har nu åbnet den første låge! ✨🎉\nI løbet af december vil du møde forskellige opgaver, og allerede nu kan du hente og lave din egen julekalender (se videoerne nedenfor). 😊🎄\n\n📚🎅 Gennem hele måneden vil der være en blanding af sjov og seriøse elementer.\nVi kommer blandt andet til at arbejde med didaktik og ting, der vedrører vores skole.\nOg i weekenderne skruer vi helt op for spas og fjol! 🤪✨"
+                }
+            },
+            {
+                "type": "quiz",
+                "value": {
+                    "question": "Lad os da lige tage en sjov lille quiz, her første december.\nHvornår blev Asgårdsskolen og den “nye skole” i Benløse indviet?",
+                    "options": [
+                        "Asgårdsskolen i 1978 – og den nye Benløse Skole i 1964",
+                        "Asgårdsskolen i 1985 – og den nye Benløse Skole i 1972",
+                        "Asgårdsskolen i 1978 – og den nye Benløse Skole i 1991"
+                    ],
+                    "correctIndex": 0,
+                    "explanation": "Asgårdsskolen åbnede dørene i 1978, og lige siden har det været muligt at rulle gennem dørene. Både med og uden parkering probl.... udfordringer.\nDen “nye skole” i Benløse blev indviet i 1964, og afløste de gamle bygninger ved gadekæret, der var dengang og i dag stadig brug for mere plads.\n\nFun fact: Vidste du, at Benløse Skole faktisk har rødder helt tilbage til 1889?📚\n\nI dag er vi Byskovskolen, hvor vi fortsat sørger for læring, leg og lidt ekstra spas i hverdagen og har fuldt gangene med bedste kolleager. ✨"
+                }
+            },
+            {
+                "type": "html",
+                "value": "<h3>Videoer</h3>\n<p>Her under har jeg lagt et par videoer, som viser hvordan man bruger kalenderen</p>\n<p> Det kan være et ret sjovt og kreativt værktøj, hvor du kan lave din egen kalender, eller få eleverne til at lave en.</p>\n<small> jeg lover lågerne fremadrettet bliver noget kortere</small>"
+            },
+            {
+                "type": "html",
+                "value": "<h5>Video</h5>"
+            },
+            {
+                "type": "video",
+                "value": "https://www.youtube.com/embed/..."
+            },
+            {
+                "type": "html",
+                "value": "<h5>Video</h5>"
+            },
+            {
+                "type": "video",
+                "value": "https://www.youtube.com/embed/..."
+            },
+            {
+                "type": "html",
+                "value": "<h5>Video</h5>"
+            },
+            {
+                "type": "video",
+                "value": "https://www.youtube.com/embed/..."
+            }
+        ]
+    },
+    "2": {
+        "title": "Dag 2: Zonen for nærmeste udvikling",
+        "emoji": "🤓",
+        "body": [
+            {
+                "type": "question",
+                "value": {
+                    "text": "Vi siger det nogen gange meget tit: \"Zonen for nærmeste udvikling\"(ZNU).\nMen husker vi faktisk på, hvad Vygotsky's model faktisk viser os?",
+                    "titleType": "question"
+                }
+            },
+            {
+                "type": "image",
+                "value": "assets/ZNU.jpg",
+                "alt": "Zonen didaktisk model lavet af Gemini"
+            },
+            {
+                "type": "quiz",
+                "value": {
+                    "question": "Hvilket af disse eksempler viser bedst, at en elev arbejder i sin zone for nærmeste udvikling?",
+                    "options": [
+                        "Eleven kan løse alle opgaver alene uden hjælp.",
+                        "Eleven kan løse opgaven med lidt støtte fra læreren eller en klassekammerat.",
+                        "Eleven kan slet ikke løse opgaven, selv med hjælp."
+                    ],
+                    "correctIndex": 1,
+                    "explanation": "Vi elsker ofte at nævne ZNU, som nok kan destilleres helt ned til, \"at de kan mere, end de tror – men nogle gange har brug for et lille skub eller en venlig hånd.\"\n\nFra \"Vygotsky, L. S. (1978). Mind in Society: The Development of Higher Psychological Processes. Cambridge, MA: Harvard University Press\" lettere om fortolket dog: læring sker bedst i samarbejde. Så næste gang du giver et lille tip eller nikker opmuntrende til en elev, hjælper du faktisk med at bygge deres “<b>superkræfter</b>”!"
+                }
+            },
+            {
+                "type": "answer",
+                "value": "Hvis opgaven er for let, keder eleven sig – og lærer ikke noget nyt.\nHvis opgaven er for svær, altså uden for \"zonen\", kan der opstå frygt, frustrerede eller \"vrede\". Der ligger altså også et \"frygt\" begreb i teorien, når vi snakker om ZNU, måske det er værd at være opmærksom på vi nævner ZNU overfor forældre, kommuner osv."
+            },
+            {
+                "type": "html",
+                "value": "<ul>Hvilken lille støtte kan du give, så de klarer næste skridt?</ul>\n<p>Har du noget som du gør, for netop elimere frygten for eleven?</p>"
+            }
+        ]
+    },
+    "3": {
+        "title": "Dag 3: Konfliktløsning og perspektiv",
+        "emoji": "🗣️",
+        "body": [
+            {
+                "type": "custom-box",
+                "value": {
+                    "icon": "x-circle",
+                    "title": "Husker du? - Rune Strøm og elefanten?",
+                    "content": "For nogen år siden, havde vi besøg af foredragsholderen Rune Strøm. Her talte han om kun se røven.\n\nEn case med meget grobund for konflikt:"
+                }
+            },
+            {
+                "type": "html",
+                "value": "<p>Pigerne i 6. klasse aftaler i frikvarteret en julefrokost, som <strong>Anne</strong> bevidst ikke må komme med til.</p>\n\n    <p><strong>Far Poul</strong> skriver vredt til lærer <strong>Pernille</strong>:</p>\n\n    <blockquote>\n        \"Det er mobning i skoletiden! Min datter skal fandme også være med!! JEG GÅR VIDERE MED DET\"\n    </blockquote>\n\n    <p>Pernille læser beskeden og frustreres. 1. Hun kendte ikke til det. 2. Hun har svært ved at se, hvordan hun kan gribe ind i en privat aftale.\n3. Pernille ved hvordan Anne er i klassen.</p>\n\n<p> Far ser røven og er sur, Pernille i situationen snablen, men til sammen bør de se det svage klassefællesskab.\"</p>\n\n"
+            },
+            {
+                "type": "image",
+                "value": "assets/elefant.jpg",
+                "alt": "Lavet af Gemini"
+            }
+        ]
+    },
+    "4": {
+        "title": "Dag 4: Relationer",
+        "emoji": "👫",
+        "body": [
+            {
+                "type": "question",
+                "value": {
+                    "text": "<div>Relationskompetence er de små, ofte ubevidste, handlinger, der viser eleverne, at du har dem på sinde. Disse handlinger kalder Louise Klinge&nbsp;<b>afstemmere</b> og er afgørende for relationens kvalitet.<br><br>Jeg har også på skolen haft holdt oplæg, tidligere, om hvordan man kan styrke relationerne og være opmærksomme på dem.<br><br>Er man medlem af DLF, så kan man helt gratis hente bogen&nbsp;\"Relationskompetence\" af Louise Klinge.<b></b></div>",
+                    "titleType": "question"
+                }
+            },
+            {
+                "type": "citat",
+                "value": {
+                    "text": "<div><font color=\"#000000\">\"Når læreren med deres handlinger skaber positive relationer til eleverne, så skaber de samtidig den nødvendige tillid og respekt, der skal til, for at børnene er modtagelige for lærerens faglige dagsorden.\"</font></div>",
+                    "author": "Louise Klinge"
+                }
+            },
+            {
+                "type": "custom-box",
+                "value": {
+                    "icon": "",
+                    "title": "",
+                    "content": "Under er nogen ting, som er taget fra Louise Klinge og andre bl.a Verdens bedste danske skole."
+                }
+            },
+            {
+                "type": "refleksion",
+                "value": "<ul data-path-to-node=\"4\"><li><p data-path-to-node=\"4,0,0\"><b>Morgenhilsenen:</b>&nbsp;Hvordan sikrer du, at din måde at sige&nbsp;<b>godmorgen</b>&nbsp;på i morgen indeholder en lille, bevidst&nbsp;<b><font color=\"#000000\">afstemmer</font></b>&nbsp;(del med andre hvad du gør), så eleven ved: \"Jeg har dig på sinde\"?</p></li><li><p data-path-to-node=\"4,1,0\"><b>Den bevidste handling:</b>&nbsp;Når en elev har det svært og er på vej i affekt, bruger du så&nbsp;&nbsp;<b>kropssprog</b>&nbsp;(f.eks. sænke tempoet, tale roligt, gå ned i højde),&nbsp;<b>trækker&nbsp;</b>dig, giver valgmuligheder (skabe&nbsp;<b>automani</b>), eller hvad gør du?</p></li><li><p data-path-to-node=\"4,1,0\"><b>Reparation af fejlafstemning:</b>&nbsp;Hvis du har råbt eller reageret for skarpt (en&nbsp;<i>fejlafstemning</i>), hvordan&nbsp;<b>reparerer</b>&nbsp;du så den relation, så eleven ved, at du ikke er sur, men at I kan komme videre?</p></li></ul>"
+            }
+        ]
+    },
+    "5": {
+        "title": "Dag 5: Weekend lige om lidt",
+        "emoji": "🤣",
+        "body": [
+            {
+                "type": "custom-box",
+                "value": {
+                    "icon": "star",
+                    "title": "Jule-Start-Bingo",
+                    "content": "<b>Få julehumøret helt i top!</b><div>Under finder du en bingo plade - har du allerede fuld plade??</div><div>Print den gerne og spil med hinanden.</div><div><br><div>Tag det med i klassen, hvis i har tid og se hvor mange der kan få bingo/banko/whatever 😄</div></div>"
+                }
+            },
+            {
+                "type": "image",
+                "value": "assets/plade.png",
+                "alt": "Bingo plade"
+            },
+            {
+                "type": "html",
+                "value": "<a href=\"assets/plade.png\" target=\"_blank\">Print</a>"
+            }
+        ]
+    },
+    "6": {
+        "title": "Dag 6: Før søndagen",
+        "emoji": "⛪️",
+        "body": [
+            {
+                "type": "custom-box",
+                "value": {
+                    "icon": "",
+                    "title": "📺 Hvad er ",
+                    "content": "<p data-path-to-node=\"4\">Det er et kort tv-program, der sendes hver lørdag aften. Formålet er at give seerne en rolig stund med eftertanke og musik som optakt til søndagen (og den kirkelige søndag).<br>Og hvor jeg hadede det som barn. Jeg ser det stadig ikke, men jeg ser heller ikke tv mere.</p><p data-path-to-node=\"6\">Tænk at det har kørt på DR siden 1981.<br>Det er tv-verdenens kakerlak: Det dør aldrig. Det vil altid være der. I det mindste vil det med streaming ikke forstyrre de yngre generationers tv-kiggeri.</p><p data-path-to-node=\"7\">Under er en quiz om noget helt andet</p>"
+                }
+            },
+            {
+                "type": "quiz",
+                "value": {
+                    "question": "Hvilken personlig computer (PC) blev lanceret af IBM i august 1981 og satte standarden for moderne computere?",
+                    "options": [
+                        " Commodore 64",
+                        "IBM PC (Model 5150)",
+                        "Apple II",
+                        "Macintosh 128K"
+                    ],
+                    "correctIndex": 1,
+                    "explanation": "Uanset om du har svaret rigtig eller forkert, håber jeg du får eller havde en god weekend!"
+                }
+            }
+        ]
+    },
+    "7": {
+        "title": "Dag 7: Weekend",
+        "emoji": "💻️",
+        "body": [
+            {
+                "type": "custom-box",
+                "value": {
+                    "icon": "thumbs-up",
+                    "title": "Billeder fra min barsel",
+                    "content": "I dag vil jeg bare dele et par billeder med jer fra min barsel. Noget af det jeg har oplevet med Inge og noget af det jeg har spildt min tid - udover denne julekalder, som tilblevet på mange sene aftner."
+                }
+            },
+            {
+                "type": "image",
+                "value": "assets/barsel.jpg",
+                "alt": ""
+            },
+            {
+                "type": "image",
+                "value": "assets/barsel1.jpg",
+                "alt": ""
+            },
+            {
+                "type": "image",
+                "value": "assets/barsel2.jpg",
+                "alt": ""
+            }
+        ]
+    },
+    "8": {
+        "title": "Quiz: S.M.A.R.T. Mål",
+        "emoji": "🎯",
+        "body": [
+            {
+                "type": "custom-box",
+                "value": {
+                    "icon": "lightbulb",
+                    "title": "Tilbage på en mandag og i gang med didaktisk igen.",
+                    "content": "<p data-path-to-node=\"12,0\">S.M.A.R.T.-modellen er et klassisk værktøj til at opstille klare og effektive mål.</p><p data-path-to-node=\"12,0\">Sidste år talte vi om at opstille mål, der kan klare en 'video-test'. Tror jeg vist nok, jeg ville bare minde jer om denne model, fordi vi så ofte skal lave mål for eleverne, særligt i centret.</p><p data-path-to-node=\"12,0\">Det er træls at ende med et mål som 'at fortsætte sit glade humør'. Vi er nok alle enige om, at det er godt at fortsætte med, men det er svært for eleven at leve op til hele tiden. Det mål dumper også 'video-testen', for hvordan kan vi måle det objektivt – udover at tælle antal smil på en dag?</p><p data-path-to-node=\"12,0\">Derfor kan S.M.A.R.T. måske være god støtte til at sætte mål .</p>"
+                }
+            },
+            {
+                "type": "image",
+                "value": "assets/smart.jpg",
+                "alt": "Smart modellen lavet af Gemini"
+            },
+            {
+                "type": "quiz",
+                "value": {
+                    "question": "Hvad står 'A' for i S.M.A.R.T.-modellen?",
+                    "options": [
+                        "Attraktivt",
+                        "Ambitiøst",
+                        "Accepteret / Achievable",
+                        "Analyseret"
+                    ],
+                    "correctIndex": 2,
+                    "explanation": "Achievable (Opnåeligt) eller Acceptabelt. Et mål skal være realistisk at opnå, og det er vigtigt at overveje, om ressourcerne er til stede for at nå målet."
+                }
+            }
+        ]
+    },
+    "9": {
+        "title": "Dag 9: Flipped Classroom",
+        "emoji": "🔄",
+        "body": [
+            {
+                "type": "question",
+                "value": {
+                    "text": "Flipped Classroom er noget jeg virkelig stiftede bekendt skab med under corona, her fik jeg i den grad produceret videoer til mine elever og alternative læringsværktøjer.<div><br><div><b>Meget kort</b> handler det om, at få flyttet gennemgangen af noget hjem/til eleven selv bearbejder, hvorefter tiden i skolen så kan bruges på anvendelsen.</div><div><br><div>Videoen under beskriver det som end-all be-all, men så stærkt tror jeg slet ikke på det. Jeg laver dog forsat videoer, værktøjer og andet som ses hjemme og der kan meebook jo være god gave til at gemme alt det.</div></div></div>",
+                    "titleType": "question"
+                }
+            },
+            {
+                "type": "html",
+                "value": "<a href=\"https://emu.dk/eud/it-og-digitalisering/digitale-metoder/introduktion-til-flipped-classroom\">Klik her for at læse om rammerne for Flipped Classroom</a>"
+            },
+            {
+                "type": "video",
+                "value": "https://www.youtube.com/embed/4a7NbUIr_iQ"
+            },
+            {
+                "type": "refleksion",
+                "value": "<div><ol><li>Hvornår slår videoen tavleundervisningen? Kan det bruges?<br><br></li><li>Hvad stiller vi op med \"de uforberedte\"? Flipped Classroom kræver, at eleven har set materialet inden timen?<br><br></li><li>Meebook som vidensbank – genbrug eller engangsbrug?</li></ol></div>"
+            }
+        ]
+    },
+    "10": {
+        "title": "Dag 10: Low arousal",
+        "emoji": "🧘",
+        "body": [
+            {
+                "type": "image",
+                "value": "assets/low.jpg",
+                "alt": "Model lavet af Gemini"
+            },
+            {
+                "type": "custom-box",
+                "value": {
+                    "icon": "edit",
+                    "title": "",
+                    "content": "<div>Vi kender det nok alle sammen, og vi har helt sikkert hørt om det! Grunden til, at jeg tager det med, er, at jeg ønsker fokus på netop den zone, vi kalder kaos. Jeg vil kort og godt oversætte det til der, hvor man er uden for pædagogisk rækkevidde.</div><div><br></div><div>Dvs. at når man møder en elev i stor affekt, og kaos er opnået, er det spild af energi at forsøge at forklare eller afklare, hvorfor eller hvad der er sket. Herfra er teorien ret klar: Det handler om at aflede og komme over i deeskalering, og først senere kan man afsøge og forklare.</div><div><br></div><div>I kaos skal krav sænkes eller fjernes. Der skal være ro i én selv til, at man kan gå med princippet om, at man måske selv er 'idioten', eller at alle på skolen er 'fucking dumme'. Jeg siger netop ikke – modsat hvad nogle tror – at man i kaos bare skal lade stå til. Vil en elev fx ikke ind i klassen og skaber uro, så tilbyd en rolig ramme et andet sted eller en anden aktivitet – eller spørg om noget banalt.</div>"
+                }
+            },
+            {
+                "type": "refleksion",
+                "value": "Direkte fra emu.dk, podcast afsnit 5 i serien \"Vejen til inklussion\", hvor emnet low arousal gennemgås."
+            },
+            {
+                "type": "html",
+                "value": "<center><iframe title=\"Videotool player\" type=\"text/html\" width=\"300\" height=\"150\" src=\"https://media.videotool.dk/?vn=25_2020022813070245364479025052\" frameborder=\"0\" allowfullscreen allow=\"autoplay; fullscreen\"></iframe></center>\n</n>\n<a href=\"https://www.emu.dk/grundskole/undervisningsmiljoe/konflikter/low-arousal-en-faelles-paedagogisk-vaerktoejskasse\" target=\"_blank\">Læs mere her</a>"
+            }
+        ]
+    },
+    "11": {
+        "title": "Dag 11: Aktivering af forhåndsviden",
+        "emoji": "💡",
+        "body": [
+            {
+                "type": "question",
+                "value": {
+                    "text": "Hvorfor er det afgørende at aktivere elevers forhåndsviden i starten af et nyt emne?",
+                    "titleType": "question"
+                }
+            },
+            {
+                "type": "image",
+                "value": "https://via.placeholder.com/400x200/005a5b/ffffff?text=Forhåndsviden",
+                "alt": "En illustration af en hjerne, hvor nye informationer forbinder sig med eksisterende netværk."
+            },
+            {
+                "type": "answer",
+                "value": "Ved at bygge bro mellem det kendte og det nye, skaber man 'knager' for den nye viden. Det gør læringen mere meningsfuld, øger fastholdelsen og kan afsløre eventuelle misforståelser, før man bygger videre."
+            },
+            {
+                "type": "refleksion",
+                "value": "Hvordan kan du hurtigt og effektivt afdække, hvad dine elever allerede ved om et emne? Brainstorm 3 konkrete metoder (f.eks. 'hurtigskrivning', 'mindmap' eller 'KWL-model')."
+            }
+        ]
+    },
+    "12": {
+        "title": "Dag 12: Undersøgelsesbaseret Læring",
+        "emoji": "🔬",
+        "body": [
+            {
+                "type": "question",
+                "value": {
+                    "text": "Hvad er kernen i 'Inquiry-Based Learning'?",
+                    "titleType": "question"
+                }
+            },
+            {
+                "type": "video",
+                "value": "https://www.youtube.com/embed/u84ZsS6niPc"
+            },
+            {
+                "type": "answer",
+                "value": "Kernen er, at eleverne selv driver læringsprocessen ved at stille spørgsmål, undersøge og udforske. Lærerens rolle skifter fra 'formidler' til 'facilitator'."
+            }
+        ]
+    },
+    "13": {
+        "title": "Dag 13: Lørdag",
+        "emoji": "❓",
+        "body": []
+    },
+    "14": {
+        "title": "Dag 14: Søndag",
+        "emoji": "🤯",
+        "body": []
+    },
+    "15": {
+        "title": "Quiz: Indre vs. Ydre Motivation",
+        "emoji": "🔥",
+        "body": [
+            {
+                "type": "quiz",
+                "value": {
+                    "question": "En elev øver sig på klaver, udelukkende fordi de elsker lyden af musik. Hvilken form for motivation er dette et eksempel på?",
+                    "options": [
+                        "Ydre motivation",
+                        "Indre motivation",
+                        "Social motivation",
+                        "Præstationsmotivation"
+                    ],
+                    "correctIndex": 1,
+                    "explanation": "Præcis! Glæden ved selve aktiviteten er kernen i indre motivation. Ydre motivation ville være, hvis eleven øvede sig for at få en belønning eller undgå straf."
+                }
+            }
+        ]
+    },
+    "16": {
+        "title": "Dag 16: Læring gennem Projekter",
+        "emoji": "🛠️",
+        "body": [
+            {
+                "type": "question",
+                "value": "Hvad er et centralt kendetegn ved Projektbaseret Læring (PBL)?"
+            },
+            {
+                "type": "image",
+                "value": "https://via.placeholder.com/400x250/005a5b/ffffff?text=Projektarbejde",
+                "alt": "En gruppe elever, der samarbejder omkring et bord med computere og papirer."
+            },
+            {
+                "type": "html",
+                "value": "<p>I PBL arbejder elever med autentiske, komplekse problemstillinger over en længere periode. Processen er lige så vigtig som produktet.</p>"
+            },
+            {
+                "type": "answer",
+                "value": "Et centralt kendetegn er, at læringen er organiseret omkring et komplekst og autentisk problem eller en udfordring, som eleverne skal undersøge og løse."
+            }
+        ]
+    },
+    "17": {
+        "title": "Dag 17: Vygotsky og ZNU",
+        "emoji": "🧑‍🤝‍🧑",
+        "body": [
+            {
+                "type": "question",
+                "value": "Hvilken didaktisk nøglekoncept er Lev Vygotsky mest kendt for?"
+            },
+            {
+                "type": "video",
+                "value": "https://www.youtube.com/embed/8I2hrSRcE_A"
+            },
+            {
+                "type": "answer",
+                "value": "'Zone for Nærmeste Udvikling' (ZNU) og vigtigheden af social interaktion i læring."
+            }
+        ]
+    },
+    "18": {
+        "title": "Dag 18: Myten om Læringsstile",
+        "emoji": "🤔",
+        "body": [
+            {
+                "type": "question",
+                "value": "Teorien om læringsstile (f.eks. Visuel, Auditiv, Kinæstetisk) er populær, men har meget lidt støtte i forskningen. Hvorfor er det vigtigere at fokusere på *indholdet* frem for en specifik 'læringsstil'?"
+            },
+            {
+                "type": "image",
+                "value": "https://via.placeholder.com/400x250/005a5b/ffffff?text=Variation+i+Undervisning",
+                "alt": "Fire ikoner, der repræsenterer forskellige undervisningsmetoder: et øje (visuelt), et øre (auditivt), en hånd (kinæstetisk) og en bog (tekst)."
+            },
+            {
+                "type": "answer",
+                "value": "Fordi det er emnets natur, der bør diktere præsentationsformen. Geometri *bør* præsenteres visuelt, og musik *bør* præsenteres auditivt, uanset elevens præference. Effektiv undervisning handler om at variere metoderne for *alle* elever, ikke om at matche en mytisk 'stil'."
+            },
+            {
+                "type": "quiz",
+                "value": {
+                    "question": "En lærer vil undervise i fotosyntese. Hvad er den bedste tilgang ifølge moderne didaktik?",
+                    "options": [
+                        "Finde ud af, hvem der er 'visuelle' elever, og kun vise dem diagrammer.",
+                        "Kombinere flere metoder: Vise diagrammer, forklare processen mundtligt og lave et lille forsøg.",
+                        "Lade eleverne læse en tekst og selv vælge, hvordan de vil lære."
+                    ],
+                    "correctIndex": 1,
+                    "explanation": "Korrekt! Den multimodale tilgang, hvor flere sanser og metoder aktiveres, er mest effektiv for *alle* elever. Det handler om at variere undervisningen, ikke at låse elever fast i båse."
+                }
+            }
+        ]
+    },
+    "19": {
+        "title": "Dag 19: Transfer - Fra Teori til Praksis",
+        "emoji": "➡️",
+        "body": [
+            {
+                "type": "question",
+                "value": "Hvad betyder 'transfer', og hvorfor er det et af de vigtigste mål for al læring?"
+            },
+            {
+                "type": "html",
+                "value": "<p>Transfer er, når en elev kan tage viden eller en færdighed lært i én kontekst (f.eks. matematiktimen) og anvende den i en helt ny kontekst (f.eks. i fysik eller i supermarkedet).</p><blockquote>Det er først, når transfer sker, at ægte mestring er opnået.</blockquote>"
+            },
+            {
+                "type": "image",
+                "value": "https://via.placeholder.com/400x200/005a5b/ffffff?text=Fra+Teori+til+Praksis",
+                "alt": "En pil, der peger fra en bog (teori) til et tandhjul (praksis)."
+            },
+            {
+                "type": "answer",
+                "value": "Det er vigtigt, fordi målet med undervisning ikke er at kunne svare rigtigt i en test, men at kunne bruge sin viden og sine færdigheder aktivt i verden uden for klasseværelset."
+            }
+        ]
+    },
+    "20": {
+        "title": "Dag 20: Lørdag",
+        "emoji": "📈",
+        "body": []
+    },
+    "21": {
+        "title": "Dag 21: Søndag",
+        "emoji": "📢",
+        "body": []
+    },
+    "22": {
+        "title": "Dag 22: Forskning og Praksis",
+        "emoji": "🔬",
+        "body": [
+            {
+                "type": "question",
+                "value": {
+                    "text": "Hvad er 'Evidensbaseret Undervisning'?",
+                    "titleType": "question"
+                }
+            },
+            {
+                "type": "video",
+                "value": "https://www.youtube.com/embed/sNG-M-a-0-Y"
+            },
+            {
+                "type": "answer",
+                "value": "Undervisningspraksis, der er baseret på systematisk forskning i, hvad der har vist sig at virke bedst for at fremme læring."
+            }
+        ]
+    },
+    "23": {
+        "title": "Dag 23: Den Didaktiske Kontrakt",
+        "emoji": "🤝",
+        "body": [
+            {
+                "type": "question",
+                "value": "Hvad menes der med den 'didaktiske kontrakt' i et klasseværelse?"
+            },
+            {
+                "type": "html",
+                "value": "<p>Kontrakten er ofte usynlig og uudtalt, men den styrer alligevel en stor del af interaktionen. F.eks. forventer eleverne, at lærerens spørgsmål har et svar, som læreren kender.</p>"
+            },
+            {
+                "type": "answer",
+                "value": "Det er de uformelle, stiltiende regler og forventninger mellem lærer og elever om, hvordan læring og interaktion skal foregå."
+            }
+        ]
+    },
+    "24": {
+        "title": "JULEAFTEN! Glædelig Jul!",
+        "emoji": "🎁",
+        "body": [
+            {
+                "type": "html",
+                "value": "<h3>Tak fordi du fulgte med!</h3><p>Vi håber, denne lille julekalender har givet anledning til refleksion og inspiration. Glædelig jul og godt nytår!</p>"
+            }
+        ]
+    },
+    "config": {
+        "mainTitle": "Julekalender Byskovskolen",
+        "subtitle": "Åben lågerne og have det sjovt - vi ses til Januar.",
+        "logoUrl": "assets/logo.png",
+        "doorOrder": [
+            10,
+            18,
+            11,
+            4,
+            1,
+            6,
+            15,
+            14,
+            7,
+            19,
+            23,
+            17,
+            5,
+            3,
+            16,
+            2,
+            9,
+            24,
+            20,
+            21,
+            12,
+            13,
+            22,
+            8
+        ],
+        "isTestMode": true
+    }
+};

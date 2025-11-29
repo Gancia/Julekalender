@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julekalender Editor</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@1/index.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: sans-serif;
+            padding: 2rem;
+            color: #212529;
+        }
+        .editor-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #004b4c;
+            text-align: center;
+        }
+        h2 { /* Added for editor visibility */
+            color: #333; 
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: .5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="text"],
+        select,
+        textarea {
+            width: 100%;
+            padding: .75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .content-blocks {
+            border-top: 2px solid #eee;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+        }
+        .block {
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            background: #f9f9f9;
+        }
+        .block-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .block-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #004b4c;
+        }
+        .add-block-buttons {
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
+            border-top: 2px solid #eee;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        button {
+            padding: 0.75rem 1.25rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: .9rem;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .btn-primary {
+            background-color: #007a7c;
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background-color: #005f60;
+        }
+        .btn-danger {
+            background-color: #d9534f;
+            color: #fff;
+        }
+        .btn-danger:hover {
+            background-color: #c9302c;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: #fff;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: .5rem;
+        }
+        .quiz-option input[type="text"] {
+            flex-grow: 1;
+        }
+        .drag-handle {
+            cursor: move;
+            padding-right: 1rem;
+            color: #888;
+        }
+        .block.dragging {
+            opacity: 0.5;
+            border: 2px dashed #007a7c;
+        }
+        .emoji-picker-container {
+            position: relative;
+        }
+        emoji-picker {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            z-index: 100;
+            display: none; /* Initially hidden */
+        }
+        .door-order-editor {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        .door-order-item {
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+            cursor: move;
+            user-select: none;
+        }
+        .door-order-item.dragging {
+            opacity: 0.5;
+            background: #cceeff;
+        }
+
+        /* Styles for Custom Box Icon Grid */
+        .icon-grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+            gap: 8px;
+            background: #f0f4f8;
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+        }
+        .icon-grid-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            aspect-ratio: 1 / 1;
+            transition: all 0.2s;
+            padding: 0;
+            color: #333;
+        }
+        .icon-grid-item:hover {
+            background: #eef2f5;
+            border-color: #007a7c;
+        }
+        .icon-grid-item.selected {
+            background: #007a7c;
+            color: #fff;
+            border-color: #005f60;
+        }
+        .icon-grid-item > svg {
+            width: 20px; /* Manually control icon size */
+            height: 20px;
+        }
+
+        /* Styles for Formatting Toolbar */
+        .formatting-toolbar {
+            display: flex;
+            gap: .25rem;
+            margin-bottom: .5rem;
+            background: #eef2f5;
+            padding: .25rem;
+            border-radius: 4px;
+        }
+        .format-btn {
+            background: #fff;
+            border: 1px solid #ccc;
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+        .format-btn:hover {
+            background: #f0f0f0;
+            border-color: #007a7c;
+        }
+
+        /* Style for question title type selector (radio buttons) */
+        .question-title-type-selector {
+            display: flex;
+            gap: 1rem;
+            margin-top: .5rem;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+        .question-title-type-selector label {
+            font-weight: normal; /* Override bold from general label style */
+            margin-bottom: 0;
+            display: inline-block; /* Keep label inline with radio */
+        }
+        .question-title-type-selector input[type="radio"] {
+            width: auto; /* Allow radio button to take its natural width */
+            margin-right: .25rem; /* Small space between radio and label */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="editor-container">
+        <h1>Julekalender Editor</h1>
+
+        <div style="background: #eef2f5; padding: 1.5rem; border-radius: 4px; margin-bottom: 2rem;">
+            <h2>Generelle Indstillinger</h2>
+            <div class="form-group">
+                <label for="config-main-title">Hovedtitel</label>
+                <input type="text" id="config-main-title" placeholder="F.eks. Didaktisk Julekalender">
+            </div>
+            <div class="form-group">
+                <label for="config-subtitle">Undertitel</label>
+                <input type="text" id="config-subtitle" placeholder="F.eks. Åbn en låge og find et nyt didaktisk princip.">
+            </div>
+            <div class="form-group">
+                <label for="config-logo-url">Logo URL</label>
+                <input type="text" id="config-logo-url" placeholder="F.eks. assets/logo.png">
+            </div>
+            <div class="form-group">
+                <label>Rækkefølge af Låger</label>
+                <p style="font-size: 0.8rem; color: #666; margin-top: -0.5rem; margin-bottom: 0.5rem;">Træk og slip for at ændre rækkefølgen. Tryk på "Bland" for en ny tilfældig rækkefølge.</p>
+                <div id="door-order-controls" style="margin-bottom: 0.5rem;">
+                    <button id="shuffle-doors" class="btn-secondary" style="width: auto;">Bland Rækkefølgen Nu</button>
+                </div>
+                <div id="door-order-container" class="door-order-editor">
+                    <!-- Numbers will be rendered here by JS -->
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="config-test-mode" style="display: inline-flex; align-items: center; gap: 0.5rem; font-weight: normal;">
+                    <input type="checkbox" id="config-test-mode" style="width: auto;">
+                    Aktivér Test-tilstand (alle låger kan åbnes)
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="day-selector">Vælg en dag at redigere</label>
+            <select id="day-selector"></select>
+        </div>
+
+        <div id="editor-fields" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;">
+                <h2 style="margin: 0;">Rediger Indhold</h2>
+                <button id="undo-changes" class="btn-danger">Fortryd Ændringer</button>
+            </div>
+
+            <div class="form-group">
+                <label for="day-title">Titel</label>
+                <input type="text" id="day-title" placeholder="F.eks. Dag 1: Noget spændende">
+            </div>
+
+            <div class="form-group emoji-picker-container">
+                <label for="day-emoji">Emoji</label>
+                <div style="display: flex; gap: .5rem;">
+                    <input type="text" id="day-emoji" placeholder="F.eks. 🎄">
+                    <button id="emoji-picker-btn" class="btn-secondary" aria-label="Vælg emoji">
+                        <i data-lucide="smile"></i>
+                    </button>
+                </div>
+                <emoji-picker></emoji-picker>
+            </div>
+
+            <h2>Indhold</h2>
+            <div id="content-blocks" class="content-blocks"></div>
+
+            <div class="add-block-buttons">
+                <button id="add-question" class="btn-secondary">Tilføj Spørgsmål</button>
+                <button id="add-answer" class="btn-secondary">Tilføj Svar</button>
+                <button id="add-html" class="btn-secondary">Tilføj HTML</button>
+                <button id="add-image" class="btn-secondary">Tilføj Billede</button>
+                <button id="add-video" class="btn-secondary">Tilføj Video</button>
+                <button id="add-quiz" class="btn-secondary">Tilføj Quiz</button>
+                <button id="add-custom-box" class="btn-secondary">Tilføj Brugerdefineret Boks</button>
+                <button id="add-citat" class="btn-secondary">Tilføj Citat</button>
+                <button id="add-refleksion" class="btn-secondary">Tilføj Refleksion</button>
+            </div>
+        </div>
+
+        <div style="margin-top: 2rem; border-top: 2px solid #eee; padding-top: 2rem; text-align: center; display: flex; justify-content: center; align-items: center; gap: 1rem;">
+            <button id="preview-door" class="btn-secondary">Test Låge</button>
+            <button id="generate-json" class="btn-primary">Generer og Download content.js</button>
+        </div>
+         <p style="margin-top: 1rem; color: #555; font-size: 0.9rem; text-align: center;">
+            Husk at erstatte den gamle <code>content.js</code> fil i dit projekt med den nye, du downloader.
+        </p>
+    </div>
+
+    <!-- Modal til at vise indhold (kopieret fra index.html) -->
+    <div id="modal" class="modal">
+        <div class="modal-card">
+            <button id="modal-close-button" class="modal-close-button">
+                <i data-lucide="x" style="width: 28px; height: 28px;"></i>
+            </button>
+            <h2 id="modal-title" class="modal-title"></h2>
+            <div id="modal-content" class="modal-content-container">
+                <!-- Indhold indsættes her af JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="content.js"></script>
+    <script src="js/editor.js"></script>
+
+</body>
+</html>
