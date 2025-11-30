@@ -301,23 +301,21 @@ footer { margin-top: 40px; font-size: 0.875rem; color: rgba(255, 255, 255, 0.4);
 /* Styling for content inside the door */
 .door-back-content {
     position: absolute;
-    inset: 0; /* Fills the parent */
-    z-index: 0; /* Sits behind the door-inner */
-
+    inset: 0;
+    z-index: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 0px;
-    
-    opacity: 0; /* Start usynlig */
-    transition: opacity 0.4s ease-in-out 800ms; /* Venter på at døren er næsten helt åben */
-    pointer-events: none; /* Make it non-interactive when invisible */
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out 1.5s; /* Simple, non-delayed fade-in + 1.5s content delay */
+    pointer-events: none;
 }
 
 .door-back-content.is-visible {
     opacity: 1;
-    pointer-events: auto; /* Gør indholdet af den åbne låge klikbar */
+    pointer-events: auto;
 }
 
 .door-back-content-day {
