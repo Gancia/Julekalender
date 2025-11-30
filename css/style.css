@@ -309,8 +309,16 @@ footer { margin-top: 40px; font-size: 0.875rem; color: rgba(255, 255, 255, 0.4);
     justify-content: center;
     gap: 0px;
     opacity: 0;
-    transition: opacity 0.4s ease-in-out 1.5s; /* Simple, non-delayed fade-in + 1.5s content delay */
+    /* Mobile-first: kort forsinkelse så animationen når at køre færdig */
+    transition: opacity 0.4s ease-in-out 0.1s;
     pointer-events: none;
+}
+
+/* Desktop: Genskab den lange forsinkelse for "background animation" effekten */
+@media (min-width: 1024px) {
+    .door-back-content {
+        transition: opacity 0.4s ease-in-out 1.5s;
+    }
 }
 
 .door-back-content.is-visible {
