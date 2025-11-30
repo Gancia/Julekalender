@@ -5,7 +5,7 @@ const calendarData = {
         "body": [
             {
                 "type": "image",
-                "value": "assets\\logo.png",
+                "value": "assets/logo.png",
                 "alt": "Logo Byskovskolen"
             },
             {
@@ -56,6 +56,10 @@ const calendarData = {
             {
                 "type": "video",
                 "value": "https://www.youtube.com/embed/..."
+            },
+            {
+                "type": "html",
+                "value": "<a target=\"_blank\" href=\"https://github.com/Gancia/Julekalender\">DOWNLOAD</a>"
             }
         ]
     },
@@ -401,7 +405,10 @@ const calendarData = {
         "body": [
             {
                 "type": "question",
-                "value": "Hvad er et centralt kendetegn ved Projektbaseret Læring (PBL)?"
+                "value": {
+                    "text": "Hvad er et centralt kendetegn ved Projektbaseret Læring (PBL)?",
+                    "titleType": "question"
+                }
             },
             {
                 "type": "image",
@@ -424,7 +431,10 @@ const calendarData = {
         "body": [
             {
                 "type": "question",
-                "value": "Hvilken didaktisk nøglekoncept er Lev Vygotsky mest kendt for?"
+                "value": {
+                    "text": "Hvilken didaktisk nøglekoncept er Lev Vygotsky mest kendt for?",
+                    "titleType": "question"
+                }
             },
             {
                 "type": "video",
@@ -442,7 +452,10 @@ const calendarData = {
         "body": [
             {
                 "type": "question",
-                "value": "Teorien om læringsstile (f.eks. Visuel, Auditiv, Kinæstetisk) er populær, men har meget lidt støtte i forskningen. Hvorfor er det vigtigere at fokusere på *indholdet* frem for en specifik 'læringsstil'?"
+                "value": {
+                    "text": "Teorien om læringsstile (f.eks. Visuel, Auditiv, Kinæstetisk) er populær, men har meget lidt støtte i forskningen. Hvorfor er det vigtigere at fokusere på *indholdet* frem for en specifik 'læringsstil'?",
+                    "titleType": "question"
+                }
             },
             {
                 "type": "image",
@@ -474,7 +487,10 @@ const calendarData = {
         "body": [
             {
                 "type": "question",
-                "value": "Hvad betyder 'transfer', og hvorfor er det et af de vigtigste mål for al læring?"
+                "value": {
+                    "text": "Hvad betyder 'transfer', og hvorfor er det et af de vigtigste mål for al læring?",
+                    "titleType": "question"
+                }
             },
             {
                 "type": "html",
@@ -528,7 +544,10 @@ const calendarData = {
         "body": [
             {
                 "type": "question",
-                "value": "Hvad menes der med den 'didaktiske kontrakt' i et klasseværelse?"
+                "value": {
+                    "text": "Hvad menes der med den 'didaktiske kontrakt' i et klasseværelse?",
+                    "titleType": "question"
+                }
             },
             {
                 "type": "html",
