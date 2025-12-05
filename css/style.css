@@ -119,59 +119,46 @@ header p {
     gap: 1rem; /* Mindre afstand på mobil */
 }
 
-/* LÅGE STYLING - 3D FLIP (RETTET) */
+/* LÅGE STYLING - SIMPEL FADE */
 .door {
     aspect-ratio: 1 / 1;
-    perspective: 1000px;
     cursor: pointer;
-    
-    /* '.door' er nu selve "kassen" bag lågen */
     background-color: #3b2d23; /* Mørk inderside */
     box-shadow: inset 2px 2px 10px rgba(0,0,0,0.5);
     border-radius: 4px;
     position: relative;
-    z-index: 10; /* Højere z-index for lukkede låger */
-    pointer-events: auto; /* Sikrer at lukkede låger er klikbare */
+    overflow: hidden; /* Hide anything that might stick out */
+    transition: transform 0.2s ease-out;
 }
 
-.door-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-    transform-origin: left center;
-    pointer-events: none; /* Løser problemet med klik-blokering fra den usynlige boks */
+.door:hover:not(.locked) {
+    transform: scale(1.02);
 }
 
-.door-front, .door-back {
+.door:active:not(.locked) {
+    transform: scale(0.98);
+}
+
+.door-front {
     position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 4px;
-}
-
-.door-front {
     background-color: #fefae0;
     border: 1px solid #eaddc7;
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
-    pointer-events: auto; /* Gør den lukkede låge-flade klikbar */
-}
-
-.door-back {
-    /* Denne er nu gennemsigtig for at vise kassens baggrund */
-    background-color: transparent; 
-    transform: rotateY(180deg);
+    z-index: 2; /* Must be above back content */
+    transition: opacity 0.6s ease-out;
 }
 
 .door::before {
     content: '';
     position: absolute;
-    top: -8px; /* Justeret for mindre låger */
+    top: -8px;
     left: 50%;
     transform: translateX(-50%) rotate(-4deg);
     width: 50%;
@@ -180,11 +167,8 @@ header p {
     box-shadow: 0 1px 1px rgba(0,0,0,0.2);
     border-left: 1px solid rgba(255,255,255,0.3);
     border-right: 1px solid rgba(255,255,255,0.3);
-    z-index: 10;
-}
-
-.door:hover:not(.locked) .door-inner {
-    transform: scale(1.02); /* Lettere svæve-effekt */
+    z-index: 3; /* Above the door front */
+    transition: opacity 0.6s ease-out; /* Also fade out the tape */
 }
 
 .door-number {
@@ -193,8 +177,6 @@ header p {
     font-weight: 400;
     color: #582f0e;
     text-shadow: none;
-    z-index: 5;
-    transition: opacity 0.3s;
 }
 
 /* MODAL STYLING */
@@ -264,20 +246,43 @@ header p {
     margin-bottom: 16px;
 }
 
-/* ... Alle andre styles som .door.open, .locked, .was-opened, etc. forbliver de samme ... */
-.door:active:not(.locked) .door-inner { transform: scale(0.98); }
-/* Rettelse: Gælder for ALLE åbne/roterede låger for at forhindre klik-blokering */
-.door.open, .door.was-opened { 
-    z-index: 5; 
-    /* pointer-events: none; - fjernet for at tillade klik på åbne låger */
-} 
-.door.open .door-inner { transform: rotateY(-160deg); }
-.door.open .door-number { opacity: 0; }
-.door.locked { cursor: not-allowed; }
-.door.locked .door-front { background-color: #d3d3d3; opacity: 0.8; }
-.door.locked::before { background-color: rgba(180, 180, 180, 0.5); }
-.door.locked .door-number { color: #8d8d8d; }
-.modal-close-button { position: absolute; top: 12px; right: 12px; color: #a5a58d; cursor: pointer; transition: color 0.15s; }
+/* Door States */
+.door.was-opened .door-front,
+.door.was-opened::before {
+    opacity: 0;
+    pointer-events: none; /* Make front unclickable when faded */
+}
+
+.door.locked { 
+    cursor: not-allowed; 
+}
+
+.door.locked .door-front { 
+    background-color: rgba(211, 211, 211, 0.8); /* Use rgba for transparency directly */
+}
+
+.door.locked::before { 
+    background-color: rgba(180, 180, 180, 0.5); 
+}
+
+.door.locked .door-number { 
+    color: #8d8d8d; 
+}
+
+/* Make sure back content is not visible on locked doors */
+.door.locked .door-back-content {
+    display: none;
+}
+
+.modal-close-button { 
+    position: absolute; 
+    top: 12px; 
+    right: 12px; 
+    left: auto;
+    color: #a5a58d; 
+    cursor: pointer; 
+    transition: color 0.15s; 
+}
 .modal-close-button:hover { color: #6b705c; }
 .modal-close-icon { width: 28px; height: 28px; }
 .modal-content-container { max-height: 70vh; overflow-y: auto; color: #3d405b; font-size: 1rem; line-height: 30px; }
@@ -294,36 +299,18 @@ header p {
 .question-box .box-title { color: #005a5b; }
 .answer-box .box-title { color: #c1121f; }
 footer { margin-top: 40px; font-size: 0.875rem; color: rgba(255, 255, 255, 0.4); text-align: center; }
-.door.was-opened:not(.open) .door-inner { transform: rotateY(-160deg); box-shadow: none; }
-.door.was-opened:not(.open) .door-number { opacity: 0; }
-.door.was-opened::before { display: none; }
 
-/* Styling for content inside the door */
+
+/* Styling for content inside the door (visible after fade) */
 .door-back-content {
     position: absolute;
     inset: 0;
-    z-index: 0;
+    z-index: 1; /* Below the door front */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0px;
-    opacity: 0;
-    /* Mobile-first: kort forsinkelse så animationen når at køre færdig */
-    transition: opacity 0.4s ease-in-out 0.1s;
-    pointer-events: none;
-}
-
-/* Desktop: Genskab den lange forsinkelse for "background animation" effekten */
-@media (min-width: 1024px) {
-    .door-back-content {
-        transition: opacity 0.4s ease-in-out 1.5s;
-    }
-}
-
-.door-back-content.is-visible {
-    opacity: 1;
-    pointer-events: auto;
+    opacity: 1; /* Always visible underneath */
 }
 
 .door-back-content-day {
@@ -335,7 +322,7 @@ footer { margin-top: 40px; font-size: 0.875rem; color: rgba(255, 255, 255, 0.4);
 
 .door-back-content-emoji {
     font-size: clamp(0.9rem, 4vw, 2rem);
-    margin-top: -10px; /* Adjust emoji position */
+    line-height: 1; /* Prevent overlap on small screens */
 }
 
 #snow-container { 
