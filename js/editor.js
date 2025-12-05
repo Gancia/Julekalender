@@ -43,7 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const generateButton = document.getElementById('generate-json');
     const previewButton = document.getElementById('preview-door');
-    const undoButton = document.getElementById('undo-changes');
+    const revertAllButton = document.getElementById('revert-all-button');
+    const revertDayButton = document.getElementById('revert-day-button');
     const emojiPicker = document.querySelector('emoji-picker');
     const emojiPickerBtn = document.getElementById('emoji-picker-btn');
     const addBlockButtons = document.querySelector('.add-block-buttons');
@@ -175,7 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
         daySelector.addEventListener('change', (e) => handleDaySelection(e, false));
         generateButton.addEventListener('click', generateAndDownloadContentJs);
         previewButton.addEventListener('click', previewCurrentDay);
-        undoButton.addEventListener('click', revertDayChanges);
+        revertAllButton.addEventListener('click', revertAllChanges);
+        revertDayButton.addEventListener('click', revertDayChanges);
 
         configFieldsContainer.addEventListener('input', markChange);
         editorFields.addEventListener('input', markChange);
@@ -821,22 +823,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function revertDayChanges() {
-        if (!originalDayData && !originalConfigData) {
-            alert("Der er ingen ændringer at fortryde.");
+        if (!currentDay || !originalDayData) {
+            alert("Vælg en dag og lav ændringer, før du kan fortryde.");
             return;
         }
-        if (confirm("Er du sikker på, at du vil fortryde alle ændringer (både generelle og for den valgte dag)?")) {
+        if (confirm("Er du sikker på, at du vil fortryde ændringerne for den valgte dag?")) {
+            // Restore the data in the main calendarData object
+            calendarData[currentDay] = JSON.parse(JSON.stringify(originalDayData));
+            // Re-render the form with the original data
+            dayTitle.value = originalDayData.title;
+            dayEmoji.value = originalDayData.emoji;
+            renderContentBlocks(originalDayData.body);
+            markChange(); // To trigger autosave of the reverted state
+        }
+    }
+
+    function revertAllChanges() {
+        if (!originalConfigData) {
+            alert("Der er ingen generelle indstillinger at fortryde.");
+            return;
+        }
+        if (confirm("Er du sikker på, at du vil fortryde de generelle indstillinger (Hovedtitel, Logo, Rækkefølge, etc.)? Dette vil ikke påvirke indholdet af de enkelte dage.")) {
             calendarData.config = JSON.parse(JSON.stringify(originalConfigData));
             populateConfigFields();
             populateDoorOrderEditor();
-
-            if (currentDay) {
-                dayTitle.value = originalDayData.title;
-                dayEmoji.value = originalDayData.emoji;
-                renderContentBlocks(originalDayData.body);
-            }
-            hasUnsavedChanges = false;
-            localStorage.removeItem('julekalenderEditorState');
+            markChange();
         }
     }
 

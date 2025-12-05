@@ -72,35 +72,23 @@ function createCalendar() {
         const isLocked = !isTestMode && (!isDecember || day > currentDay);
         const wasOpened = openedDoors.includes(day);
 
-        // Flipping elements
-        const numberSpan = document.createElement('span');
-        numberSpan.className = 'door-number';
-        numberSpan.textContent = day;
-        const doorInner = document.createElement('div');
-        doorInner.className = 'door-inner';
-        const doorFront = document.createElement('div');
-        doorFront.className = 'door-front';
-        const doorBack = document.createElement('div');
-        doorBack.className = 'door-back';
-        doorFront.appendChild(numberSpan);
-        doorInner.appendChild(doorFront);
-        doorInner.appendChild(doorBack);
-        door.appendChild(doorInner);
-
-        // Pre-render back content for all doors
+        // Back content (number and emoji) - This is visible underneath
         const data = calendarData[day];
         if (data) {
-            const content = document.createElement('div');
-            content.className = 'door-back-content';
-            content.innerHTML = `
+            const backContent = document.createElement('div');
+            backContent.className = 'door-back-content';
+            backContent.innerHTML = `
                 <span class="door-back-content-day">${day}</span>
                 <span class="door-back-content-emoji">${data.emoji || ''}</span>
             `;
-            if (wasOpened && !isLocked) {
-                content.classList.add('is-visible');
-            }
-            door.appendChild(content);
+            door.appendChild(backContent);
         }
+
+        // Front of the door (the part that fades)
+        const doorFront = document.createElement('div');
+        doorFront.className = 'door-front';
+        doorFront.innerHTML = `<span class="door-number">${day}</span>`;
+        door.appendChild(doorFront);
 
         // Set initial states
         if (wasOpened && !isLocked) {
@@ -208,25 +196,22 @@ function openDoor(day) {
         openedDoors.push(day);
         localStorage.setItem('openedDoors', JSON.stringify(openedDoors));
     }
-    doorElement.classList.add('was-opened');
-    closeModal();
-    doorElement.classList.add('open');
+    
+    closeModal(); // Ensure other modals are closed before animation
 
-    const doorInner = doorElement.querySelector('.door-inner');
-    if (doorInner) {
-        doorInner.addEventListener('transitionend', function onTransitionEnd() {
-            const content = doorElement.querySelector('.door-back-content');
-            if (content) {
-                content.classList.add('is-visible');
-            }
-            // Vælg timeout baseret på skærmstørrelse for at matche CSS-animationen
-            const isDesktop = window.innerWidth >= 1024;
-            const modalTimeout = isDesktop ? 400 : 500; // Kortere for desktop, længere for mobil
-            setTimeout(showModal, modalTimeout);
+    const doorFront = doorElement.querySelector('.door-front');
+    if (doorFront) {
+        // The 'transitionend' event will fire when the fade-out is complete
+        doorFront.addEventListener('transitionend', () => {
+            setTimeout(showModal, 50); // Small delay before showing modal
         }, { once: true });
     } else {
-        setTimeout(showModal, 800);
+        // Fallback for safety, e.g. if the doorFront is not found
+        setTimeout(showModal, 500);
     }
+    
+    // Add class to trigger the fade-out animation
+    doorElement.classList.add('was-opened');
 }
 
 /**
@@ -261,7 +246,6 @@ function handleQuizAnswer(buttonElement, isCorrect) {
  */
 function closeModal() {
     modal.classList.remove('is-visible');
-    document.querySelectorAll('.door.open').forEach(door => door.classList.remove('open'));
 }
 
 /**
