@@ -676,3 +676,38 @@ footer { margin-top: 40px; font-size: 0.875rem; color: rgba(255, 255, 255, 0.4);
     -moz-appearance: none;
     appearance: none;
 }
+/* Loading Overlay */
+#loading-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: #005a5b; /* Match body background */
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  transition: opacity 0.5s ease;
+}
+
+.snowflake-loader {
+  color: #fffde7; /* Match header text color */
+  font-size: 3em; /* Larger snowflake */
+  animation: spin-loader 2s linear infinite; /* Reuse spin animation, maybe slower */
+}
+
+@keyframes spin-loader {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#loading-overlay p {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.5rem;
+    color: #fffde7;
+}
+
+/* Utility class to hide content */
+.content-hidden {
+    visibility: hidden;
+}
